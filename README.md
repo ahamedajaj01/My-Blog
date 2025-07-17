@@ -140,4 +140,4 @@ npm run dev
 
 ## 🙌 Credits
 
-Built by [Ajaj Ahamed Thakurai]("https://www.linkedin.com/in/ajaj-ahamed-323369364") with ❤️ using React & Appwrite.
+Built by [Ajaj Ahamed Thakurai](https://www.linkedin.com/in/ajaj-ahamed-323369364) with ❤️ using React & Appwrite.
