@@ -4,6 +4,7 @@ module.exports = {
     "./index.html",
     "./src/**/*.{js,jsx,ts,tsx}", // All JS/TS/JSX/TSX files inside src folder
   ],
+  darkMode: 'class',
   theme: {
     extend: {},
   },

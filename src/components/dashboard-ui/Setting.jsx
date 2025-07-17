@@ -1,10 +1,13 @@
 import React from 'react'
+import SettingNavbar from './setting-ui/SettingNavbar'
+import {Outlet} from "react-router-dom"
 
 function Setting() {
   return (
-    <div>
-      setting
-    </div>
+    <>
+    <SettingNavbar/>
+    <Outlet/>
+    </>
   )
 }
 

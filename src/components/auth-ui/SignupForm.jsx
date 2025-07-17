@@ -43,10 +43,10 @@ export default function SignupForm({ onSubmit, loading }) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="bg-white p-6 rounded-md shadow-md max-w-md w-full"
+      className="bg-white p-6 rounded-md shadow-md max-w-md w-full dark:bg-gray-800 dark:border"
     >
       <Input
-        label="name"
+        label="Name"
         name="name"
         value={form.name}
         onChange={handleChange}

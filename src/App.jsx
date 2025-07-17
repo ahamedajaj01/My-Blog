@@ -14,9 +14,23 @@ import PublicRoute from "./components/PublicRoute";
 function App() {
   const dispatch = useDispatch();
   const { isLoading } = useSelector((state) => state.auth);
-  // 👈 This keeps auth in sync
+
+  // To apply toggle effect in website
+  const darkMode = useSelector((state)=> state.theme.darkMode)
+
+  useEffect(()=>{
+     if (darkMode) {
+      document.documentElement.classList.add('dark');
+          localStorage.setItem("theme", "dark"); // ✅ Save to localStorage
+    } else {
+      document.documentElement.classList.remove('dark');
+          localStorage.setItem("theme", "light"); // ✅ Save to localStorage
+    }
+  }, [darkMode])
+
+  //  This keeps auth in sync
   useEffect(() => {
-    // 👈 Check current user on app load
+    //  Check current user on app load
     dispatch(checkCurrentUser());
   }, []);
   // ✅ wait until auth check completes
@@ -25,6 +39,11 @@ function App() {
   }
   return (
     <>
+     <div className="min-h-screen bg-white text-black dark:bg-gray-800 dark:text-white"> 
+
+     
+      {/* Your app content here */}
+  
       <Navbar />
       {/* <Routes> */}
       <Routes>
@@ -40,6 +59,7 @@ function App() {
       </Routes>
 
       <Footer />
+    </div>
     </>
   );
 }

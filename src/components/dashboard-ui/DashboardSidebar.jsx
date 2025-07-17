@@ -36,7 +36,7 @@ const handleClose = ()=>{
 
       <aside
         className={`
-          bg-gray-800 text-white w-64 min-h-screen flex flex-col p-6
+          bg-gradient-to-r from-purple-400 to-indigo-500 text-white w-64 min-h-screen flex flex-col p-6 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700
           fixed top-0 left-0 z-40 transform transition-transform duration-300 ease-in-out
           md:relative md:translate-x-0 md:block
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
@@ -76,7 +76,7 @@ const handleClose = ()=>{
           >
             ➕ New Post
           </Link>
-          <Link to="/dashboard/setting" className="hover:text-pink-400 transition"
+          <Link to="/dashboard/setting/account" className="hover:text-pink-400 transition"
             onClick={() => setSidebarOpen(false)}  
           >
             ⚙️ Setting

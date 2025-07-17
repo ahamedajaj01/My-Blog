@@ -32,7 +32,8 @@ const [alert, setAlert] = useState({type:"", message:""})
   return (
      <div className="min-h-screen flex flex-col md:flex-row">
       {/* Left Panel */}
-      <div className="hidden md:flex w-1/2 bg-gradient-to-br from-pink-500 to-purple-600 text-white items-center justify-center p-10">
+      <div className="hidden md:flex w-1/2 bg-gradient-to-br from-pink-500 to-purple-600 text-white items-center justify-center p-10
+       dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-800 dark:text-white ">
         <div className="max-w-md text-center">
           <h2 className="text-3xl font-bold mb-4">Join MyBlog</h2>
           <p className="text-lg leading-relaxed">

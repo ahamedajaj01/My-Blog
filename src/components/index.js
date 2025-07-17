@@ -13,6 +13,10 @@ import MyPost from "./dashboard-ui/MyPost";
 import Setting from "./dashboard-ui/Setting";
 import Blog from "./dashboard-ui/Blog";
 import EditPost from "./dashboard-ui/EditPost";
+import Account from "./dashboard-ui/setting-ui/Account";  // <-- dashboardd setting components
+import Security from "./dashboard-ui/setting-ui/Security";
+import Preferences from "./dashboard-ui/setting-ui/Preferences";
+
 
 export {
   Navbar,
@@ -30,4 +34,7 @@ export {
   Setting,
   Blog,
   EditPost,
+  Account,
+  Security,
+  Preferences,
 };

@@ -3,7 +3,7 @@ import React from 'react'
 
   export default function Footer() {
   return (
-    <footer className="bg-indigo-900 text-gray-300 py-8">
+    <footer className="bg-indigo-900 text-gray-300 py-8 dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-800 dark:text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
         
         <p className="text-sm">&copy; {new Date().getFullYear()} MyBlog. All rights reserved.</p>

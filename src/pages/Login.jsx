@@ -32,7 +32,8 @@ const {status, error} = useSelector((state) => state.auth)
   return (
     <div className="min-h-screen grid grid-cols-1 md:grid-cols-2">
       {/* Left Panel */}
-      <div className="bg-gradient-to-br from-pink-500 to-purple-600 text-white flex items-center justify-center p-10">
+      <div className="bg-gradient-to-br from-pink-500 to-purple-600 text-white flex items-center justify-center p-10
+     dark:bg-gradient-to-br dark:from-gray-900 dark:to-gray-800 dark:text-white ">
         <div className="max-w-md text-center">
           <h2 className="text-3xl font-bold mb-4">Welcome Back!</h2>
           <p className="text-lg">

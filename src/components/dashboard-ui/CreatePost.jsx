@@ -62,11 +62,11 @@ setStatus("");
 
   return (
     <>
-  <div className="text-3xl text-center font-bold text-gray-800 mb-6">
+  <div className="text-3xl text-center font-bold text-gray-800 mb-6 dark:text-white">
   Create New Blog Post
 </div>
 
-    <form onSubmit={handleSubmit} className="max-w-3xl mx-auto p-6 bg-gray-100 rounded-lg shadow">
+    <form onSubmit={handleSubmit} className="max-w-3xl mx-auto p-6 bg-gray-100 rounded-lg shadow dark:bg-gray-800 dark:text-white">
              {alert?.message && (
          <Alert id="alert-message" type={alert.type} message={alert.message} />
        )}
@@ -77,6 +77,7 @@ setStatus("");
       <label className="block mb-2 font-semibold">Content:</label>
       <Editor
        apiKey={import.meta.env.VITE_TINYMCE_API_KEY}// Optional if you registered domain
+      
        value={content}
         init={{
           height: 300,

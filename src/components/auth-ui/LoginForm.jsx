@@ -33,7 +33,7 @@ function LoginForm({onSubmit, loading}) {
         onSubmit(form)
     }
   return (
-     <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md">
+     <form onSubmit={handleSubmit} className="bg-white  p-6 rounded shadow-md dark:bg-gray-800 dark:border" >
       <Input
         label="Email"
         type="email"

@@ -22,20 +22,20 @@ const formatJoinedDate = (isoString) => {
 
 
   return (
-    <main className="flex-1 p-6 bg-gray-50 min-h-screen">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">Welcome, {userData?.name || "User"} 👋</h1>
+    <main className="flex-1 p-6 bg-gray-50 min-h-screen dark:bg-gray-800">
+      <h1 className="text-3xl font-bold text-gray-800 mb-6 dark:text-white">Welcome, {userData?.name || "User"} 👋</h1>
 
       {/* Profile Overview */}
-      <div className="bg-white shadow rounded-lg p-6 flex flex-col md:flex-row gap-6 items-center">
+      <div className="bg-white shadow rounded-lg p-6 flex flex-col md:flex-row gap-6 items-center dark:bg-gray-700">
         <img
           src={`https://ui-avatars.com/api/?name=${userData?.name || "User"}&background=random&bold=true`}
           alt="User Avatar"
           className="w-24 h-24 rounded-full object-cover border-4 border-indigo-500"
         />
         <div className="text-center md:text-left">
-          <h2 className="text-2xl font-semibold text-gray-800">{userData?.name || "User Name"}</h2>
-          <p className="text-gray-600">{userData?.email || "email@example.com"}</p>
-          <p className="text-sm text-gray-400 mt-1"> Joined: {userData?.registration ? formatJoinedDate(userData.registration) : "N/A"}</p>
+          <h2 className="text-2xl font-semibold text-gray-800 dark:text-white">{userData?.name || "User Name"}</h2>
+          <p className="text-gray-600 dark:text-white">{userData?.email || "email@example.com"}</p>
+          <p className="text-sm text-gray-400 mt-1 dark:text-white"> Joined: {userData?.registration ? formatJoinedDate(userData.registration) : "N/A"}</p>
         </div>
       </div>
 
@@ -44,9 +44,10 @@ const formatJoinedDate = (isoString) => {
 
   {/* Create New Post */}
   <Link to= "/dashboard/create">
-  <div className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white p-6 rounded-xl shadow-lg hover:scale-[1.02] transition cursor-pointer">
+  <div className="bg-gradient-to-r from-indigo-500 to-purple-500 text-white p-6 rounded-xl shadow-lg hover:scale-[1.02] transition cursor-pointer
+  dark:bg-gradient-to-r dark:from-gray-900 dark:via-gray-800 dark:to-gray-700 dark:text-white">
     <div className="flex items-center gap-4">
-      <div className="bg-white text-indigo-600 p-3 rounded-full">
+      <div className="bg-white text-indigo-600 p-3 rounded-full dark:bg-gray-700">
         <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2"
              viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4"/>
@@ -61,12 +62,12 @@ const formatJoinedDate = (isoString) => {
                </Link>
 
   {/* My Posts */}
-  <div className="bg-white border border-gray-200 p-6 rounded-xl shadow hover:shadow-md transition">
+  <div className="bg-white border border-gray-200 p-6 rounded-xl shadow hover:shadow-md transition dark:bg-gray-800">
     <div className="flex items-start justify-between">
       <div>
-        <h3 className="text-sm text-gray-500 font-medium">Total Posts</h3>
-        <p className="text-3xl font-bold text-gray-800 mt-1">12</p>
-        <p className="text-sm text-gray-400 mt-1">Published & Drafts</p>
+        <h3 className="text-sm text-gray-500 font-medium  dark:text-white">Total Posts</h3>
+        <p className="text-3xl font-bold text-gray-800 mt-1  dark:text-white">12</p>
+        <p className="text-sm text-gray-400 mt-1  dark:text-white">Published & Drafts</p>
       </div>
       <div className="bg-indigo-100 text-indigo-600 p-3 rounded-full">
         <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2"
@@ -79,13 +80,13 @@ const formatJoinedDate = (isoString) => {
   </div>
 
   {/* Account Settings */}
-  <div className="bg-white border border-gray-200 p-6 rounded-xl shadow hover:shadow-md transition">
+  <div className="bg-white border border-gray-200 p-6 rounded-xl shadow hover:shadow-md transition dark:bg-gray-800">
     <div className="flex items-start justify-between">
       <div>
-        <h3 className="text-sm text-gray-500 font-medium">Account Settings</h3>
-        <p className="text-base font-semibold text-gray-800 mt-1">Manage profile & password</p>
+        <h3 className="text-sm text-gray-500 font-medium  dark:text-white">Account Settings</h3>
+        <p className="text-base font-semibold text-gray-800 mt-1  dark:text-white">Manage profile & password</p>
       </div>
-      <div className="bg-yellow-100 text-yellow-600 p-3 rounded-full">
+      <div className="bg-yellow-100 text-yellow-600 p-3 rounded-full dark:bg-gray-700 dark:text-white">
         <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2"
              viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round"
@@ -96,14 +97,14 @@ const formatJoinedDate = (isoString) => {
   </div>
 
   {/* Bookmarked Posts */}
-  <div className="bg-white border border-gray-200 p-6 rounded-xl shadow hover:shadow-md transition">
+  <div className="bg-white border border-gray-200 p-6 rounded-xl shadow hover:shadow-md transition dark:bg-gray-800">
     <div className="flex items-start justify-between">
       <div>
-        <h3 className="text-sm text-gray-500 font-medium">Bookmarked</h3>
-        <p className="text-3xl font-bold text-gray-800 mt-1">4</p>
-        <p className="text-sm text-gray-400 mt-1">Saved for later</p>
+        <h3 className="text-sm text-gray-500 font-medium  dark:text-white">Bookmarked</h3>
+        <p className="text-3xl font-bold text-gray-800 mt-1  dark:text-white">4</p>
+        <p className="text-sm text-gray-400 mt-1  dark:text-white">Saved for later</p>
       </div>
-      <div className="bg-green-100 text-green-600 p-3 rounded-full">
+      <div className="bg-green-100 text-green-600 p-3 rounded-full dark:bg-gray-800">
         <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2"
              viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round"
@@ -114,15 +115,15 @@ const formatJoinedDate = (isoString) => {
   </div>
 
   {/* Draft Posts */}
-  <div className="bg-white border border-gray-200 p-6 rounded-xl shadow hover:shadow-md transition">
+  <div className="bg-white border border-gray-200 p-6 rounded-xl shadow hover:shadow-md transition dark:bg-gray-800">
     <div className="flex items-start justify-between">
       <div>
-        <h3 className="text-sm text-gray-500 font-medium">Drafts</h3>
-        <p className="text-3xl font-bold text-gray-800 mt-1">3</p>
-        <p className="text-sm text-gray-400 mt-1">Unpublished posts</p>
+        <h3 className="text-sm text-gray-500 font-medium  dark:text-white">Drafts</h3>
+        <p className="text-3xl font-bold text-gray-800 mt-1 v  dark:text-white">3</p>
+        <p className="text-sm text-gray-400 mt-1  dark:text-white">Unpublished posts</p>
       </div>
-      <div className="bg-pink-100 text-pink-600 p-3 rounded-full">
-        <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2"
+      <div className="bg-pink-100 text-pink-600 p-3 rounded-full dark:bg-gray-800">
+        <svg className="w-6 h-6 dark:bg-pink-100" fill="none" stroke="currentColor" strokeWidth="2"
              viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round"
                 d="M15 10l4.553-2.276a1 1 0 010 1.553L15 12l-6-3 6-3z"/>
@@ -132,13 +133,13 @@ const formatJoinedDate = (isoString) => {
   </div>
 
   {/* Help & Support */}
-  <div className="bg-white border border-gray-200 p-6 rounded-xl shadow hover:shadow-md transition">
+  <div className="bg-white border border-gray-200 p-6 rounded-xl shadow hover:shadow-md transition dark:bg-gray-800">
     <div className="flex items-start justify-between">
       <div>
-        <h3 className="text-sm text-gray-500 font-medium">Support</h3>
-        <p className="text-base font-semibold text-gray-800 mt-1">Get help or contact us</p>
+        <h3 className="text-sm text-gray-500 font-medium  dark:text-white">Support</h3>
+        <p className="text-base font-semibold text-gray-800 mt-1  dark:text-white">Get help or contact us</p>
       </div>
-      <div className="bg-red-100 text-red-600 p-3 rounded-full">
+      <div className="bg-red-100 text-red-600 p-3 rounded-full dark:bg-gray-100">
         <svg className="w-6 h-6" fill="none" stroke="currentColor" strokeWidth="2"
              viewBox="0 0 24 24">
           <path strokeLinecap="round" strokeLinejoin="round"
