@@ -4,7 +4,7 @@ A full-featured blog web application where users can **sign up**, **log in**, **
 
 # LIVE DEMO
 
-https://my-blog-ashy-phi.vercel.app/login
+https://my-blog-ashy-phi.vercel.app
 ---
 
 ## 🚀 Features
