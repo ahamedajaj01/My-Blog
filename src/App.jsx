@@ -3,6 +3,7 @@ import { Navbar, Footer } from "./components";
 import { Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import About from "./pages/About";
+import Posts from "./pages/Posts"
 import Signup from "./pages/Signup";
 import Login from "./pages/Login";
 import Dashboard from "./pages/Dashboard";
@@ -51,6 +52,7 @@ function App() {
         <Route path="/" element={<PublicRoute><Home /></PublicRoute>} />
 
         <Route path="/about" element={<About />} />
+        <Route path="/posts" element={<Posts />} />
         
         <Route path="/signup" element={<PublicRoute><Signup /></PublicRoute>} />
 

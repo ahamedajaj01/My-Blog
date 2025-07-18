@@ -33,32 +33,47 @@ const handleFileChange = (e) => {
 }
 
 // Submit handler for creating a new blog post
-  const handleSubmit = async (e)=>{
-    e.preventDefault()
-    // TODO: Blog creation logic appwrite API call
-    if(!title || !content || !status || !userData){
-      setAlert({ type: "error", message: "Title, content, status, and user are required." });
-      return;
-    }
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  if (!title || !content || !status || !userData?.$id) {
+    setAlert({ type: "error", message: "All fields are required." });
+    return;
+  }
+
+  try {
     let uploadedImage = null;
-    if(featuredImage){
-      const imageResponse =await dispatch(uploadFile(featuredImage)).unwrap();
+    if (featuredImage) {
+      const imageResponse = await dispatch(uploadFile(featuredImage)).unwrap();
       uploadedImage = imageResponse.$id;
     }
-   await dispatch(createBlog({ title, slug, content, featuredImage: uploadedImage, status, userId: userData?.$id })).unwrap();
-    setAlert({ type: "success", message: "Blog created successfully!" });
-  
-    setTimeout(()=>{
-setAlert(null)
 
-    },1000)
-    // Reset form fields after successful creation
-setTitle("")
-setSlug("")
-setContent("")
-setFeaturedImage(null);
-setStatus("");
+    await dispatch(
+      createBlog({
+        title,
+        slug,
+        content,
+        featuredImage: uploadedImage,
+        status,
+        userId: userData.$id,
+      })
+    ).unwrap();
+
+    setAlert({ type: "success", message: "Blog created successfully!" });
+
+    setTimeout(() => setAlert(null), 1000);
+
+    // Reset form
+    setTitle("");
+    setSlug("");
+    setContent("");
+    setFeaturedImage(null);
+    setStatus("");
+  } catch (error) {
+    setAlert({ type: "error", message: error });
   }
+};
+
 
   return (
     <>

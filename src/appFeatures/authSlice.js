@@ -9,7 +9,7 @@ export const signupUser = createAsyncThunk(
     try {
       // 📤 Step 1: Call Appwrite's createUser API to register a new user
       await authService.createUser({ email, password, name });
-      // 📥 Step 2: After successful signup, fetch the current user's data
+      // 📥 Step 3: After successful signup, fetch the current user's data
       const user = await authService.getCurrentUser();
       // ✅ Return the user data to be handled by the fulfilled case in extraReducers
       return user;

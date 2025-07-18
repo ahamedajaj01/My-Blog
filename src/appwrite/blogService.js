@@ -22,6 +22,7 @@ export class BlogService {
     userId,
   }) {
     try {
+          console.log("UserId for permission:", userId);  // <--- Add here to debug
       return await this.databases.createDocument(
         config.appwriteDatabaseId,
         config.appwriteCollectionId,
@@ -105,6 +106,23 @@ export class BlogService {
       return [];
     }
   }
+
+  //  Only the logged-in user's blogs
+async getUserBlogs(userId) {
+  try {
+    const response = await this.databases.listDocuments(
+      config.appwriteDatabaseId,
+      config.appwriteCollectionId,
+      [Query.equal("userId", userId)]
+    );
+    return response.documents;
+  } catch (error) {
+    console.error("Error getting user's blogs:", error);
+    return [];
+  }
+}
+
+
 
   // Function to upload a file to the storage bucket
   async uploadFile(file) {

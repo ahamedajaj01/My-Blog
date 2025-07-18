@@ -1,6 +1,6 @@
 import React,{useEffect} from 'react'
 import { useDispatch,useSelector } from 'react-redux'
-import { getAllBlogs } from '../../appFeatures/blogSlice'
+import { getUserBlogs } from '../../appFeatures/blogSlice'
 import {Link} from "react-router-dom"
 
 
@@ -9,7 +9,7 @@ function MyPost() {
 const {blogs, status, error} = useSelector((state)=> state.blog)
 
 useEffect(()=>{
-  dispatch(getAllBlogs())
+  dispatch(getUserBlogs())
 }, [dispatch])
 
  if (status === "loading") return <p className="text-center">Loading blogs...</p>;

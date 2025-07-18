@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import blogService from "../appwrite/blogService";
+import authService from "../appwrite/auth"
 
 // Async thunk to create a new blog post
 export const createBlog = createAsyncThunk(
@@ -105,6 +106,30 @@ export const getAllBlogs = createAsyncThunk(
         }
     }
 )
+
+ // Thunk to get only current user's blogs
+ export const getUserBlogs = createAsyncThunk(
+  "blogs/getUserBlogs",
+  async(_, {rejectWithValue})=>{
+    try {
+       const user = await authService.getCurrentUser(); // get current logged in user
+      const blogs = await blogService.getUserBlogs(user.$id); // fetch their blogs
+       // Add imageUrl for each blog if it has featuredImage
+        const blogsWithImages = await Promise.all(
+            blogs.map( async (blog) =>{
+              if (blog.featuredImage) {
+              const imageUrl = await blogService.getFilePreview(blog.featuredImage);
+                return {...blog, imageUrl}
+              }
+              return blog;
+            })
+          );
+        return blogsWithImages; // Return the list of blogs with images
+    } catch (error) {
+            return rejectWithValue(error.message || "Failed to fetch user blogs");
+    }
+  }
+ )
 
 // Async thunk to delete a file (used when deleting a blog post with image)
 export const deleteFile = createAsyncThunk(
@@ -233,6 +258,20 @@ const blogSlice = createSlice({
             state.error = action.payload; // Set the error message
         })
 
+        // When the getUserBlogs thunk is triggered
+        
+         .addCase(getUserBlogs.pending, (state) => {
+            state.status = "loading"; 
+        })
+        .addCase(getUserBlogs.fulfilled, (state, action) => {
+            state.status = "succeeded"; 
+            state.blogs = action.payload; // Set the blogs to the fetched list
+        })
+        .addCase(getUserBlogs.rejected, (state, action) => {
+            state.status = "failed"; // Set status to failed when the request is rejected
+            state.error = action.payload; // Set the error message
+        })
+
         // 6: when the deleteFile thunk is triggered
         .addCase(deleteFile.pending, (state) => {
             state.status = "loading";
@@ -260,6 +299,8 @@ const blogSlice = createSlice({
             state.status = "failed"; // Set status to failed when the request is rejected
             state.error = action.payload; // Set the error message
         })
+
+        
   },
 });
 

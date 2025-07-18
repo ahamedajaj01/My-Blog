@@ -24,6 +24,8 @@ export class AuthService {
         password,
         name
       );
+          // 👇 This is the missing piece
+    await this.account.createEmailPasswordSession(email, password);
       return user;
     } catch (error) {
       console.error("Error creating user:", error);
