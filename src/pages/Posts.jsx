@@ -6,12 +6,18 @@ import {Link} from "react-router-dom"
 function Posts() {
   const dispatch = useDispatch();
   const {blogs, loading, error} = useSelector((state) => state.blog)
+    const userData = useSelector((state) => state.auth.userData);
+  // const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
+
+
+    // const isOwner = isAuthenticated && blogs.userId === userData?.$id;
+
   useEffect(()=>{
     dispatch(getAllBlogs())
   }, [dispatch])
   return (
      <div className="max-w-4xl mx-auto p-4">
-         <h1 className="text-2xl font-bold mb-4 text-center">My Blog Posts</h1>
+         <h1 className="text-2xl font-bold mb-4 text-center">Recent Published Blog Posts</h1>
          {blogs.length === 0 ? (
            <p className="text-center text-gray-600">No blog posts found.</p>
          ) : (
@@ -29,7 +35,7 @@ function Posts() {
                    Status: <span className="font-medium">{blog.status}</span>
                  </div>
             <Link
-              to={`/posts/readPost/${blog.$id}`}
+              to={blog.userId === userData?.$id? `/dashboard/blog/${blog.$id}`:`/posts/readPost/${blog.$id}`}
               className="text-blue-600 mt-3 inline-block"
             >
               Read More →
