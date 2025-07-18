@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Input, Button } from "../../index";
 import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -7,11 +7,14 @@ import {
   updateEmail,
   updateName,
 } from "../../../appFeatures/authSlice";
+import {Alert} from "../../index"
 
 function Account() {
   const [newName, setnewName] = useState("");
   const [newEmail, setnewEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [nameAlert,setNameAlert] = useState({type:"", message:""})
+  const [emailAlert,setEmailAlert] = useState({type:"", message:""})
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -28,35 +31,47 @@ function Account() {
 
     try {
       await dispatch(updateName(newName)).unwrap();
-      alert("name updated");
+      setNameAlert({type:"success", message:"Name updated successfully"});
       setnewName("");
     } catch (error) {
-      alert("failed to updte");
+setEmailAlert({ type: "error", message: "Failed to update email" });
     }
   };
+// Effect to auto-hide alert after  seconds
+useEffect(()=>{
+  if(nameAlert.message || emailAlert.message){
+    const timer = setTimeout(()=>{
+setNameAlert({ type: "", message: "" });
+setEmailAlert({ type: "", message: "" });
+    },2200)
+        return () => clearTimeout(timer);
+
+  }
+},[nameAlert.message, emailAlert.message])
 
   // functon to update email
   const handleUpdateEmail = async (e) => {
     e.preventDefault();
 
     if (!newEmail || !password) {
-      return alert("Both fields are required");
+      return setEmailAlert({type:"error",message:"Both fields are required"});
     }
 
     try {
       await dispatch(updateEmail({ newEmail, password })).unwrap();
 
-      alert("Email updated successfully! Please login again.");
-
-      await dispatch(logout());
-
+      setEmailAlert({type:"success",message:"Email updated successfully! Please login again."});
+setTimeout(async ()=>{
+    await dispatch(logout());
       navigate("/login");
+},2200)
+  
 
       setPassword("");
       setnewEmail("");
     } catch (error) {
       console.log("Caught error:", error);
-      alert("Failed to update: " + error?.message);
+      setEmailAlert({type:"error",messsage:"failed to update"});
     }
   };
 
@@ -75,6 +90,7 @@ function Account() {
         <div className="flex flex-col gap-2">
           {/* name update form */}
           <form onSubmit={handleUpdateName}>
+            {nameAlert.message && <Alert type={nameAlert.type} message={nameAlert.message} />}
             <Input
               label="Name"
               type="text"
@@ -108,6 +124,7 @@ function Account() {
         <div className="flex flex-col gap-2">
           {/* email update form */}
           <form onSubmit={handleUpdateEmail}>
+             {emailAlert.message && <Alert type={emailAlert.type} message={emailAlert.message} />}
             <Input
               label="Enter your new Email"
               type="email"

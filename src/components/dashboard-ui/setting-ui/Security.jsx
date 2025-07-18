@@ -1,13 +1,16 @@
-import React,{useState} from 'react'
+import React,{useState, useEffect} from 'react'
 import {Input, Button} from "../../index"
 import { useDispatch, useSelector } from "react-redux";
 import {updatePassword} from "../../../appFeatures/authSlice"
+import {Alert} from "../../index"
 
 
 
 function Security() {
 const [currentPassword, setCurrentPassword] = useState("")
 const [newPassword, setNewPassword] = useState("");
+  const [alert,setAlert] = useState({type:"", message:""})
+
 const dispatch = useDispatch()
 
 const {updatePasswordLoading, error, status,isLoading} = useSelector((state)=> state.auth)
@@ -16,17 +19,28 @@ const handleUpdatePassword =async (e)=>{
   e.preventDefault();
  
   if(!currentPassword || ! newPassword){
-    alert("both fieldes req")
+      setAlert({type:"error", message:"Both field required"});
   }
   try {
     await dispatch(updatePassword({currentPassword,newPassword})).unwrap()
-        alert("Password updated successfully!");
+        setAlert({type:"success", message:"Password updated successfully!"});
 setNewPassword("")
 setCurrentPassword("")
   } catch (error) {
-        alert(error.message || "Password update failed");
+        setAlert({type:"error",message:"update failed,try again"});
   }
 }
+// Effect to auto-hide alert after some seconds
+useEffect(()=>{
+  if(alert){
+    const timer = setTimeout(()=>{
+      setAlert("")
+    
+    },2200)
+        return () => clearTimeout(timer);
+
+  }
+},[alert])
 
   return (
     <>
@@ -37,6 +51,7 @@ setCurrentPassword("")
   <div className="flex flex-col gap-2">
 
     <form onSubmit={handleUpdatePassword} className='space-y-4'>
+      {alert.message && <Alert type={alert.type} message={alert.message} />}
     <Input
     label = "Current password"
     type="password"

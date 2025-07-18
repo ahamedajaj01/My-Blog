@@ -2,6 +2,7 @@ import React from "react";
 import { themeToggle } from "../../../appFeatures/themeSlice";
 import { useDispatch, useSelector } from "react-redux";
 
+
 function Preferences() {
   const dispatch = useDispatch();
   const darkMode = useSelector((state) => state.theme.darkMode);
