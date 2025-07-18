@@ -34,7 +34,7 @@ function Account() {
       setNameAlert({type:"success", message:"Name updated successfully"});
       setnewName("");
     } catch (error) {
-setEmailAlert({ type: "error", message: "Failed to update email" });
+setNameAlert({ type: "error", message: "Failed to update name" });
     }
   };
 // Effect to auto-hide alert after  seconds
