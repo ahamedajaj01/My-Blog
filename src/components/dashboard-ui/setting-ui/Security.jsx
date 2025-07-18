@@ -1,6 +1,33 @@
-import React from 'react'
+import React,{useState} from 'react'
 import {Input, Button} from "../../index"
-function Security({loading}) {
+import { useDispatch, useSelector } from "react-redux";
+import {updatePassword} from "../../../appFeatures/authSlice"
+
+
+
+function Security() {
+const [currentPassword, setCurrentPassword] = useState("")
+const [newPassword, setNewPassword] = useState("");
+const dispatch = useDispatch()
+
+const {updatePasswordLoading, error, status,isLoading} = useSelector((state)=> state.auth)
+
+const handleUpdatePassword =async (e)=>{
+  e.preventDefault();
+ 
+  if(!currentPassword || ! newPassword){
+    alert("both fieldes req")
+  }
+  try {
+    await dispatch(updatePassword({currentPassword,newPassword})).unwrap()
+        alert("Password updated successfully!");
+setNewPassword("")
+setCurrentPassword("")
+  } catch (error) {
+        alert(error.message || "Password update failed");
+  }
+}
+
   return (
     <>
      {/* Change Your password */}
@@ -8,35 +35,38 @@ function Security({loading}) {
   <h2 className="text-xl font-semibold mb-6">Change Your password</h2>
   
   <div className="flex flex-col gap-2">
-    
+
+    <form onSubmit={handleUpdatePassword} className='space-y-4'>
     <Input
     label = "Current password"
-      type="password"
-  
-      name="password"
-      placeholder="Enter your old password"
-      className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800"
+    type="password"
+    value={currentPassword}
+    onChange={(e)=>setCurrentPassword(e.target.value)}
+    name="password"
+    placeholder="Enter your old password"
+    className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800"
     />
     <Input
     label = "New password"
       type="password"
-      id="password"
+      value={newPassword}
+      onChange={(e)=>setNewPassword(e.target.value)}
       name="password"
       placeholder="Enter your new password"
       className="border border-gray-300 rounded-md px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 dark:bg-gray-800"
     />
-      {/* {errors.password && (
-        <p className="text-red-500 text-sm mb-2">{errors.password}</p>
-      )} */}
+      
  <Button
         type="submit"
-        disabled={loading}
+        disabled={updatePasswordLoading|| !currentPassword || !newPassword}
         variant="secondary"
         size="md"
         className="w-full mt-4 dark:bg-blue-600 dark:hover:bg-blue-400 dark:text-white"
-      >
-        {loading ? "Updating..." : "Update"}
+        >
+        {updatePasswordLoading ? "Updating..." : "Update Password"}
       </Button>
+        {error && <p className="text-red-500">{error}</p>}
+        </form>
   </div>
 </div>
 {/* Two-Factor Authentication */}
@@ -46,10 +76,10 @@ function Security({loading}) {
 type= "submit"
 variant="secondary"
 size="md"
-disabled={loading}
+disabled={isLoading}
 className="px-4 py-2 border rounded dark:bg-gray-400 dark:text-black dark:hover:bg-gray-600"
 >
-     {loading ? "Enable Two-Factor Authentication..." : "Enable Two-Factor Authentication"}
+     {isLoading ? "Enable Two-Factor Authentication..." : "Enable Two-Factor Authentication"}
      </Button>
 
      {/* delete account */}
@@ -59,9 +89,9 @@ className="px-4 py-2 border rounded dark:bg-gray-400 dark:text-black dark:hover:
 type= "submit"
 size="md"
 variant= "danger"
-disabled={loading}
+disabled={isLoading}
 className="px-4 py-2 border bg-red-800 text-white roundedhover:bg-red-100 dark:bg-red-800 dark:hover:bg-red-400">
-{loading ? "  Delete My Account..." : "  Delete My Account"}
+{isLoading ? "  Delete My Account..." : "  Delete My Account"}
 </Button>
 
     </>

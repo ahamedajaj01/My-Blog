@@ -13,7 +13,7 @@ import PublicRoute from "./components/PublicRoute";
 
 function App() {
   const dispatch = useDispatch();
-  const { isLoading } = useSelector((state) => state.auth);
+  const { isLoading} = useSelector((state) => state.auth);
 
   // To apply toggle effect in website
   const darkMode = useSelector((state)=> state.theme.darkMode)
@@ -34,6 +34,7 @@ function App() {
     dispatch(checkCurrentUser());
   }, []);
   // ✅ wait until auth check completes
+ 
   if (isLoading) {
     return <div className="text-center mt-10">Loading...</div>;
   }
