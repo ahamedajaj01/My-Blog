@@ -11,6 +11,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { checkCurrentUser } from "./appFeatures/authSlice";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
+import ReadPost from "./pages/ReadPost"
 
 function App() {
   const dispatch = useDispatch();
@@ -53,6 +54,7 @@ function App() {
 
         <Route path="/about" element={<About />} />
         <Route path="/posts" element={<Posts />} />
+        <Route path="/posts/readPost/:id" element={<ReadPost />} />
         
         <Route path="/signup" element={<PublicRoute><Signup /></PublicRoute>} />
 
