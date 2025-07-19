@@ -28,7 +28,7 @@ const handleClose = ()=>{
       {!sidebarOpen && (
         <button
           onClick={handleToggle}
-          className="fixed top-1/2 left-0 transform -translate-y-1/2 bg-indigo-600 text-white px-2 py-1 rounded-r-lg shadow z-50 md:hidden"
+          className="fixed top-1/2 left-0  transform -translate-y-1/2 bg-indigo-600 text-white px-2 py-1 rounded-r-lg shadow z-50 md:hidden"
         >
           ➤
         </button>
@@ -36,7 +36,7 @@ const handleClose = ()=>{
 
       <aside
         className={`
-          bg-gradient-to-r from-purple-400 to-indigo-500 text-white w-64 min-h-screen flex flex-col p-6 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700
+          bg-gradient-to-r from-purple-400 to-indigo-500 text-white w-60 min-h-screen flex flex-col p-16 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700
           fixed top-0 left-0 z-40 transform transition-transform duration-300 ease-in-out
           md:relative md:translate-x-0 md:block
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}

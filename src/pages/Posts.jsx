@@ -20,7 +20,7 @@ return words.length > wordLimit ? words.slice(0, wordLimit).join(" ")+ "...":tex
     dispatch(getAllBlogs())
   }, [dispatch])
   return (
-     <div className="max-w-4xl mx-auto p-4">
+     <div className="max-w-4xl mx-auto p-20">
          <h1 className="text-2xl font-bold mb-4 text-center">Recent Published Blog Posts</h1>
          {blogs.length === 0 ? (
            <p className="text-center text-gray-600">No blog posts found.</p>
@@ -31,7 +31,7 @@ return words.length > wordLimit ? words.slice(0, wordLimit).join(" ")+ "...":tex
                <li key={blog.$id} className="p-4 border rounded shadow hover:shadow-lg transition">
                  
                   {blog.imageUrl && (
-               <img src={blog.imageUrl} style={{ maxWidth: "300px" }} />
+               <img src={blog.imageUrl} style={{maxWidth: "100%", width:"400px", height: "auto",display: "block",margin: "0 auto"}} />
              )}
                  <h2 className="text-3xl  font-semibold">{blog.title}</h2>
                     {/* ✅ Show plain truncated text */}

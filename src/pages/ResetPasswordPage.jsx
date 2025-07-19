@@ -22,7 +22,7 @@ const handleSubmit =async (e)=>{
 if(!userId || !secret || !newPassword) return;
 
 await dispatch(resetPassword({userId,secret,newPassword})).unwrap();
-console.log("Dispatching reset with:", { userId, secret, newPassword });
+
  setTimeout(() => {
   navigate("/login");
 }, 2000);

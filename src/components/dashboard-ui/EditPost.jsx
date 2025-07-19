@@ -57,7 +57,7 @@ function EditPost() {
         }, 1500);
     }
   return (
-     <div className="max-w-3xl mx-auto p-6">
+     <div className="max-w-3xl mx-auto p-16">
       <h2 className="text-2xl font-bold mb-4">Edit Blog Post</h2>
       {alert && <Alert type={alert.type} message={alert.message} />}
       <form onSubmit={handleSubmit}>

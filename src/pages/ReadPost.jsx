@@ -21,7 +21,7 @@ useEffect(() => {
   if (!blog) return <p>Blog not found</p>;
 
     return (
-  <div className="relative max-w-4xl mx-auto p-4">
+  <div className="relative max-w-4xl mx-auto p-20">
   <h1 className="text-3xl font-bold mb-4">{blog.title}</h1>
 
   {blog.imageUrl && (

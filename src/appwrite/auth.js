@@ -101,7 +101,7 @@ export class AuthService {
 async forgetPassword (email) {
   if(!email) return;
   try {
-    console.log("Reset password redirect URL:", config.appwritePasswordRecoveryUrl)
+   
 
     const res = await this.account.createRecovery(email, `${config.appwritePasswordRecoveryUrl}?`)
     return res

@@ -103,7 +103,7 @@ setTimeout(async ()=>{
 
             <Button
               type="submit"
-              disabled={updateNameLoading}
+              disabled={updateNameLoading || !newName}
               variant="secondary"
               size="md"
               className="w-full mt-4 dark:bg-blue-600 dark:hover:bg-blue-400 dark:text-white"
@@ -146,7 +146,7 @@ setTimeout(async ()=>{
 
             <Button
               type="submit"
-              disabled={updateEmailLoading}
+              disabled={updateEmailLoading || !newEmail}
               variant="secondary"
               size="md"
               className="w-full mt-4 dark:bg-blue-600 dark:hover:bg-blue-400 dark:text-white"

@@ -53,7 +53,7 @@ const ForgetPasswordModal = ({ isOpen, onClose }) => {
             variant="secondary"
             size="md"
             className="w-full mt-4 hover:bg-pink-100"
-            disabled={resetPasswordLoading}
+            disabled={resetPasswordLoading || !email}
           >
             {resetPasswordLoading ? "Sending..." : "Send Reset Link"}
           </Button>

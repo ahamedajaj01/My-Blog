@@ -34,7 +34,7 @@ const formatJoinedDate = (isoString) => {
 
 
   return (
-    <main className="flex-1 p-6 bg-gray-50 min-h-screen dark:bg-gray-800">
+    <main className="flex-1 p-16 bg-gray-50 min-h-screen dark:bg-gray-800">
       <h1 className="text-3xl font-bold text-gray-800 mb-6 dark:text-white">Welcome, {userData?.name || "User"} 👋</h1>
 
       {/* Profile Overview */}

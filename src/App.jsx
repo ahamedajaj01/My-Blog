@@ -13,6 +13,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
 import ReadPost from "./pages/ReadPost"
 import ResetPasswordPage from "./pages/ResetPasswordPage";
+import PageTitle from "./utils/PageTitle";
 
 function App() {
   const dispatch = useDispatch();
@@ -47,7 +48,7 @@ function App() {
 
      
       {/* Your app content here */}
-  
+  <PageTitle/>
       <Navbar />
       {/* <Routes> */}
       <Routes>
