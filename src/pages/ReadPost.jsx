@@ -30,7 +30,7 @@ useEffect(() => {
   
   <div dangerouslySetInnerHTML={{ __html: blog.content }} />
   <p className="mt-4 text-gray-500">Status: {blog.status}</p><br/><div>
-      hello
+     
     </div>
     </div>
   )

@@ -1,11 +1,22 @@
-import React from 'react'
-import { useSelector } from 'react-redux'
+import React,{useEffect} from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import {getUserBlogs} from "../../appFeatures/blogSlice" 
 import {Link} from "react-router-dom"
 
 export default function DashboardProfile() {
   const { userData } = useSelector((state) => state.auth);
+const {blogs} = useSelector((state)=> state.blog)
 
- 
+const dispatch = useDispatch();
+
+useEffect(() => {
+  dispatch(getUserBlogs()); // This should trigger Appwrite blog fetch
+}, []);
+const userPostCount = blogs?.filter(blog => blog.userId === userData?.$id).length;
+const userDraftCount = blogs?.filter(blog => blog.status === "draft").length;
+
+
+
 // 📦 Convert UNIX timestamp to readable date
 const formatJoinedDate = (isoString) => {
   if (!isoString) return "N/A";
@@ -19,6 +30,7 @@ const formatJoinedDate = (isoString) => {
     day: "numeric",
   });
 };
+
 
 
   return (
@@ -66,7 +78,7 @@ const formatJoinedDate = (isoString) => {
     <div className="flex items-start justify-between">
       <div>
         <h3 className="text-sm text-gray-500 font-medium  dark:text-white">Total Posts</h3>
-        <p className="text-3xl font-bold text-gray-800 mt-1  dark:text-white">12</p>
+        <p className="text-3xl font-bold text-gray-800 mt-1  dark:text-white">{userPostCount > 0 ? userPostCount : "No Posts"}</p>
         <p className="text-sm text-gray-400 mt-1  dark:text-white">Published & Drafts</p>
       </div>
       <div className="bg-indigo-100 text-indigo-600 p-3 rounded-full">
@@ -80,6 +92,7 @@ const formatJoinedDate = (isoString) => {
   </div>
 
   {/* Account Settings */}
+  <Link to= "/dashboard/setting/account">
   <div className="bg-white border border-gray-200 p-6 rounded-xl shadow hover:shadow-md transition dark:bg-gray-800">
     <div className="flex items-start justify-between">
       <div>
@@ -95,13 +108,13 @@ const formatJoinedDate = (isoString) => {
       </div>
     </div>
   </div>
-
+</Link>
   {/* Bookmarked Posts */}
   <div className="bg-white border border-gray-200 p-6 rounded-xl shadow hover:shadow-md transition dark:bg-gray-800">
     <div className="flex items-start justify-between">
       <div>
         <h3 className="text-sm text-gray-500 font-medium  dark:text-white">Bookmarked</h3>
-        <p className="text-3xl font-bold text-gray-800 mt-1  dark:text-white">4</p>
+        <p className="text-3xl font-bold text-gray-800 mt-1  dark:text-white">0</p>
         <p className="text-sm text-gray-400 mt-1  dark:text-white">Saved for later</p>
       </div>
       <div className="bg-green-100 text-green-600 p-3 rounded-full dark:bg-gray-800">
@@ -119,7 +132,7 @@ const formatJoinedDate = (isoString) => {
     <div className="flex items-start justify-between">
       <div>
         <h3 className="text-sm text-gray-500 font-medium  dark:text-white">Drafts</h3>
-        <p className="text-3xl font-bold text-gray-800 mt-1 v  dark:text-white">3</p>
+        <p className="text-3xl font-bold text-gray-800 mt-1 v  dark:text-white">{userDraftCount > 0 ? userDraftCount : "No Posts"}</p>
         <p className="text-sm text-gray-400 mt-1  dark:text-white">Unpublished posts</p>
       </div>
       <div className="bg-pink-100 text-pink-600 p-3 rounded-full dark:bg-gray-800">

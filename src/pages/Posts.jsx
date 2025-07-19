@@ -2,11 +2,19 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllBlogs } from "../appFeatures/blogSlice";
 import {Link} from "react-router-dom"
+import striptags from "striptags"; 
+
 
 function Posts() {
   const dispatch = useDispatch();
   const {blogs} = useSelector((state) => state.blog)
     const userData = useSelector((state) => state.auth.userData);
+
+    const truncateText= (html, wordLimit = 50)=>{
+          const text = striptags(html);
+const words = text.split(" ");
+return words.length > wordLimit ? words.slice(0, wordLimit).join(" ")+ "...":text;
+    }
 
   useEffect(()=>{
     dispatch(getAllBlogs())
@@ -25,11 +33,17 @@ function Posts() {
                   {blog.imageUrl && (
                <img src={blog.imageUrl} style={{ maxWidth: "300px" }} />
              )}
-                 <h2 className="text-xl font-semibold">{blog.title}</h2>
-                 <p className="text-gray-600 line-clamp-2" dangerouslySetInnerHTML={{ __html: blog.content }} />
+                 <h2 className="text-3xl  font-semibold">{blog.title}</h2>
+                    {/* ✅ Show plain truncated text */}
+              <p className="text-gray-600 dark:text-white">
+                {truncateText(blog.content, 50)}
+              </p>
+                 {/* <p className="text-gray-600 line-clamp-2" dangerouslySetInnerHTML={{ __html: blog.content }} />
                  <div className="mt-2 text-sm text-gray-500">
                    Status: <span className="font-medium">{blog.status}</span>
                  </div>
+                    */}
+
             <Link
               to={blog.userId === userData?.$id? `/dashboard/blog/${blog.$id}`:`/posts/readPost/${blog.$id}`}
               className="text-blue-600 mt-3 inline-block"
