@@ -41,7 +41,7 @@ const {status, error} = useSelector((state) => state.auth)
             <br /><br/>
             <span className="font-semibold">Don't have an account?</span><br/>
             <Link to="/signup">
-            <span className="font-semibold" style={{color:"#0000FF", textDecoration:"underline"}}>Sign up to get started.</span>
+            <span className="font-semibold" style={{color:"#6bdef5ff", textDecoration:"underline"}}>Sign up to get started.</span>
             </Link>
           </p>
         </div>
@@ -53,7 +53,7 @@ const {status, error} = useSelector((state) => state.auth)
            {alert.message && <Alert type={alert.type} message={alert.message} />}
           <h2 className="text-2xl font-semibold mb-6 text-center">Login</h2>
           <LoginForm onSubmit={handleLogin} loading={status === "loading"} />
-         {status === "failed" && <p className="text-red-500 text-center mt-4">{error}</p>}
+        
         </div>
       </div>
     </div>

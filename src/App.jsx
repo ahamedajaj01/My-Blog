@@ -12,6 +12,7 @@ import { checkCurrentUser } from "./appFeatures/authSlice";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
 import ReadPost from "./pages/ReadPost"
+import ResetPasswordPage from "./pages/ResetPasswordPage";
 
 function App() {
   const dispatch = useDispatch();
@@ -55,6 +56,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/posts" element={<Posts />} />
         <Route path="/posts/readPost/:id" element={<ReadPost />} />
+        <Route path="reset-password" element={<ResetPasswordPage/>} />
         
         <Route path="/signup" element={<PublicRoute><Signup /></PublicRoute>} />
 

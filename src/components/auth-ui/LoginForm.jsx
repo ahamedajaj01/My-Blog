@@ -1,7 +1,8 @@
 import React,{useState} from 'react'
-import {Input,Button} from "../index"
+import {Input,Button,ForgetPasswordModal} from "../index"
 
 function LoginForm({onSubmit, loading}) {
+  const [showModal, setShowModal] = useState(false);
     const [form, setForm] = useState({
         email : "",
         password : ""
@@ -32,6 +33,8 @@ function LoginForm({onSubmit, loading}) {
         if(!validate()) return;
         onSubmit(form)
     }
+
+  
   return (
      <form onSubmit={handleSubmit} className="bg-white  p-6 rounded shadow-md dark:bg-gray-800 dark:border" >
       <Input
@@ -54,6 +57,15 @@ function LoginForm({onSubmit, loading}) {
         placeholder="********"
         className={error.password ? "border-red-500" : ""}
       />
+
+      {/* forget password modal */}
+      <div onClick={()=> setShowModal(true)} className='container text-sm text-blue-600 hover:underline cursor-pointer dark:text-white'>
+        Forget Password
+        </div>
+      <ForgetPasswordModal
+  isOpen={showModal}
+  onClose={() => setShowModal(false)}
+/>
       {error.password && <p className="text-red-500 text-sm mb-2">{error.password}</p>}
 
       <Button type="submit" disabled={loading} variant="primary" size="md" className="w-full mt-2">

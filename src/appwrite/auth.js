@@ -87,19 +87,37 @@ export class AuthService {
   async updateEmail({ newEmail, password }) {
     if (!newEmail || !password) throw new Error("Email and password required");
     try {
-
-
-    // ✅  Update email
+      // ✅  Update email
     const res = await this.account.updateEmail(newEmail, password);
-
     // ✅ Log out after update
     await this.account.deleteSession("current");
-
       return res;
     } catch (error) {
       throw error;
     }
   }
+
+//  send reset password link to email method
+async forgetPassword (email) {
+  if(!email) return;
+  try {
+    const res = await this.account.createRecovery(email, config.appwritePasswordRecoveryUrl)
+    return res
+  } catch (error) {
+    throw(error)
+  }
+}
+
+// reset password from reset link
+async resetPassword(userId,secret,newPassword) {
+  try {
+
+    const res = await this.account.updateRecovery(userId,secret,newPassword)
+    return res;
+  } catch (error) {
+        throw error;
+  }
+}
 
 }
 

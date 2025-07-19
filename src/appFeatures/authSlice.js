@@ -1,6 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "../appwrite/auth";
-import blogService from "../appwrite/blogService";
 
 // 1: 🔐 Signup Thunk using createAsyncThunk from Redux Toolkit
 export const signupUser = createAsyncThunk(
@@ -118,6 +117,34 @@ export const updateEmail = createAsyncThunk(
   }
 );
 
+// create a thunk to sent reset password link to email
+export const forgetPassword = createAsyncThunk(
+  "auth/forgetPassword",
+  async (email, {rejectWithValue})=>{
+    try {
+      const res = await authService.forgetPassword(email);
+      return res;
+    } catch (error) {
+      return rejectWithValue(error.message || "Failed to send recovery email");
+    }
+  }
+) 
+
+// create a thunk to handle reset password link received in email
+export const resetPassword =createAsyncThunk(
+  "auth/resetPassword",
+  async ({userId, secret,newPassword}, {rejectWithValue})=>{
+      if (!userId || !secret || !newPassword) throw new Error("Missing params");
+
+    try{
+    const res = await authService.resetPassword(userId,secret,newPassword)
+    return res;
+    }catch (error){
+      return rejectWithValue(error.message);
+
+    }
+  }
+)
 
 
 // 🔁 Initial auth state
@@ -130,6 +157,7 @@ const initialState = {
   //  for name and email
   updateNameLoading: false,
   updateEmailLoading: false,
+  resetPasswordLoading:false,
   errorNameUpdate: null,
   errorEmailUpdate: null,
 
@@ -287,7 +315,44 @@ const authSlice = createSlice({
         state.status = "failed";
         state.updateEmailLoading = false;
         state.errorEmailUpdate = action.payload || "Failed to update password";
-      });
+      })
+
+      // 7: when forgetPassword is triggered
+      .addCase(forgetPassword.pending, (state)=>{
+        state.resetPasswordLoading = true;
+        state.error=null;
+        state.status=null;
+      })
+      .addCase(forgetPassword.fulfilled, (state,action)=>{
+        state.status = "succeeded";
+        state.resetPasswordLoading = false;
+        state.error = null;
+      })
+      .addCase(forgetPassword.rejected,(state,action)=>{
+        state.status = "failed";
+        state.resetPasswordLoading = false;
+                state.error = action.payload || "Failed to send recovery email";
+
+      })
+
+       // 8: when resetpassword is triggered
+      .addCase(resetPassword.pending, (state)=>{
+        state.resetPasswordLoading = true;
+        state.error=null;
+        state.status=null;
+      })
+      .addCase(resetPassword.fulfilled, (state,action)=>{
+        state.status = "succeeded";
+        state.resetPasswordLoading = false;
+        state.error = null;
+      })
+      .addCase(resetPassword.rejected,(state,action)=>{
+        state.status = "failed";
+        state.resetPasswordLoading = false;
+                state.error = action.payload || "Failed to reset password";
+
+      })
+
   },
 });
 

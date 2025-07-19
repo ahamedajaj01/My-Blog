@@ -16,6 +16,7 @@ import EditPost from "./dashboard-ui/EditPost";
 import Account from "./dashboard-ui/setting-ui/Account";  // <-- dashboardd setting components
 import Security from "./dashboard-ui/setting-ui/Security";
 import Preferences from "./dashboard-ui/setting-ui/Preferences";
+import ForgetPasswordModal from "./ui/ForgetPasswordModal";
 
 
 export {
@@ -37,4 +38,5 @@ export {
   Account,
   Security,
   Preferences,
+ForgetPasswordModal,
 };

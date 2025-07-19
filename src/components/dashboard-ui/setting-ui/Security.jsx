@@ -95,7 +95,7 @@ useEffect(()=>{
 type= "submit"
 variant="secondary"
 size="md"
-disabled={isLoading}
+disabled={true}
 className="px-4 py-2 border rounded dark:bg-gray-400 dark:text-black dark:hover:bg-gray-600"
 >
      {isLoading ? "Enable Two-Factor Authentication..." : "Enable Two-Factor Authentication"}
@@ -108,7 +108,7 @@ className="px-4 py-2 border rounded dark:bg-gray-400 dark:text-black dark:hover:
 type= "submit"
 size="md"
 variant= "danger"
-disabled={isLoading}
+disabled={true}
 className="px-4 py-2 border bg-red-800 text-white roundedhover:bg-red-100 dark:bg-red-800 dark:hover:bg-red-400">
 {isLoading ? "  Delete My Account..." : "  Delete My Account"}
 </Button>
