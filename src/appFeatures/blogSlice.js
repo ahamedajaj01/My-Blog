@@ -147,12 +147,12 @@ export const deleteFile = createAsyncThunk(
 // Async thunk to upload a file (used when creating or updating a blog post)
 export const uploadFile = createAsyncThunk(
   "blog/uploadFile",
-  async (file, { rejectWithValue }) => {
+  async ({file,userId}, thunkAPI) => {
     try {
-      const response = await blogService.uploadFile(file);
+      const response = await blogService.uploadFile(file, userId);
       return response; // Return the uploaded file information
     } catch (error) {
-      return rejectWithValue(error.message || "Failed to upload file.");
+      return thunkAPI.rejectWithValue(error.message || "Failed to upload file.");
     }
   }
 );

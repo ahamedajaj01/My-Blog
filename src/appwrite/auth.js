@@ -100,6 +100,7 @@ export class AuthService {
       throw error;
     }
   }
+
 }
 
 // Exporting the AuthService instance

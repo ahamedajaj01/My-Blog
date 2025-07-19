@@ -25,10 +25,10 @@ export default function CreatePost() {
   };
 // handle file change for featured image upload
 const handleFileChange = (e) => {
-  e.preventDefault();
   const file = e.target?.files?.[0];
   if(file){
     setFeaturedImage(file);
+   
   }
 }
 
@@ -44,7 +44,7 @@ const handleFileChange = (e) => {
   try {
     let uploadedImage = null;
     if (featuredImage) {
-      const imageResponse = await dispatch(uploadFile(featuredImage)).unwrap();
+      const imageResponse = await dispatch(uploadFile({ file: featuredImage, userId: userData.$id })).unwrap();
       uploadedImage = imageResponse.$id;
     }
 
@@ -58,6 +58,7 @@ const handleFileChange = (e) => {
         userId: userData.$id,
       })
     ).unwrap();
+
 
     setAlert({ type: "success", message: "Blog created successfully!" });
 

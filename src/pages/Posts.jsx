@@ -5,12 +5,8 @@ import {Link} from "react-router-dom"
 
 function Posts() {
   const dispatch = useDispatch();
-  const {blogs, loading, error} = useSelector((state) => state.blog)
+  const {blogs} = useSelector((state) => state.blog)
     const userData = useSelector((state) => state.auth.userData);
-  // const isAuthenticated = useSelector(state => state.auth.isAuthenticated);
-
-
-    // const isOwner = isAuthenticated && blogs.userId === userData?.$id;
 
   useEffect(()=>{
     dispatch(getAllBlogs())
@@ -40,7 +36,7 @@ function Posts() {
             >
               Read More →
             </Link>
-               </li>
+               </li>  
              ))}
            </ul>
          )}

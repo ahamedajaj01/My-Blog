@@ -1,7 +1,8 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "../appwrite/auth";
+import blogService from "../appwrite/blogService";
 
-// 🔐 Signup Thunk using createAsyncThunk from Redux Toolkit
+// 1: 🔐 Signup Thunk using createAsyncThunk from Redux Toolkit
 export const signupUser = createAsyncThunk(
   "auth/signupUser", // 👈 Unique action type prefix for Redux
 
@@ -20,7 +21,7 @@ export const signupUser = createAsyncThunk(
   }
 );
 
-// 🔐 Login Thunk using createAsyncThunk from Redux Toolkit
+// 2: 🔐 Login Thunk using createAsyncThunk from Redux Toolkit
 export const loginUser = createAsyncThunk(
   "auth/loginUser", // 👈 Unique action type prefix for Redux
   async ({ email, password }, { rejectWithValue }) => {
@@ -34,7 +35,7 @@ export const loginUser = createAsyncThunk(
   }
 );
 
-// ✅ Logout Thunk using createAsyncThunk from Redux Toolkit
+// 3: ✅ Logout Thunk using createAsyncThunk from Redux Toolkit
 export const logoutUser = createAsyncThunk(
   "auth/logoutUser",
   async (_, thunkAPI) => {
@@ -49,7 +50,7 @@ export const logoutUser = createAsyncThunk(
   }
 );
 
-// Fetch current user Thunk using createAsyncThunk from Redux Toolkit
+// 4: Fetch current user Thunk using createAsyncThunk from Redux Toolkit
 // This is useful to check if a user is logged in when the app starts
 export const checkCurrentUser = createAsyncThunk(
   "auth/checkCurrentUser",
@@ -66,7 +67,7 @@ export const checkCurrentUser = createAsyncThunk(
   }
 );
 
-// Fetch current user and update password
+// 5: Fetch current user and update password
 export const updatePassword = createAsyncThunk(
   "auth/changePassword",
   async ({ currentPassword, newPassword }, thunkAPI) => {
@@ -84,7 +85,7 @@ export const updatePassword = createAsyncThunk(
   }
 );
 
-// Update/change name of the user
+// 6: Update/change name of the user
 export const updateName = createAsyncThunk(
   "auth/changeName",
   async (newName, thunkAPI) => {
@@ -97,11 +98,11 @@ export const updateName = createAsyncThunk(
   }
 );
 
-//  Creating a thunk to handle email update
+// 7:  Creating a thunk to handle email update
 export const updateEmail = createAsyncThunk(
   "auth/updateEmail", //  Slice/action name
 
-  // ✅ Destructure newEmail and password from payload
+  //  Destructure newEmail and password from payload
   async ({ newEmail, password }, thunkAPI) => {
     try {
       //  Call your service method to update email
@@ -116,6 +117,8 @@ export const updateEmail = createAsyncThunk(
     }
   }
 );
+
+
 
 // 🔁 Initial auth state
 const initialState = {

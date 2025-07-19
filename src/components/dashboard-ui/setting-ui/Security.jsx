@@ -6,12 +6,14 @@ import {Alert} from "../../index"
 
 
 
+
 function Security() {
 const [currentPassword, setCurrentPassword] = useState("")
 const [newPassword, setNewPassword] = useState("");
   const [alert,setAlert] = useState({type:"", message:""})
 
 const dispatch = useDispatch()
+
 
 const {updatePasswordLoading, error, status,isLoading} = useSelector((state)=> state.auth)
 
@@ -41,6 +43,8 @@ useEffect(()=>{
 
   }
 },[alert])
+
+
 
   return (
     <>
@@ -99,7 +103,7 @@ className="px-4 py-2 border rounded dark:bg-gray-400 dark:text-black dark:hover:
 
      {/* delete account */}
      <h3 className="text-lg font-semibold mt-8 mb-4 text-red-600">Danger Zone</h3>
-<p className="text-sm text-gray-600 mb-2 dark:text-white">This action is irreversible. Your account and blogs will be deleted permanently.</p>
+<p className="text-md text-gray-600 mb-2 dark:text-white">This action is irreversible. Your account and blogs will be deleted permanently.</p>
 <Button 
 type= "submit"
 size="md"

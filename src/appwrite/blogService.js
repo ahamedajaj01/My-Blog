@@ -22,7 +22,7 @@ export class BlogService {
     userId,
   }) {
     try {
-          console.log("UserId for permission:", userId);  // <--- Add here to debug
+        
       return await this.databases.createDocument(
         config.appwriteDatabaseId,
         config.appwriteCollectionId,
@@ -125,12 +125,15 @@ async getUserBlogs(userId) {
 
 
   // Function to upload a file to the storage bucket
-  async uploadFile(file) {
+  async uploadFile(file, userId) {
     try {
       return await this.storage.createFile(
         config.appwriteBucketId,
         ID.unique(),
-        file
+        file,
+          [   Permission.read(Role.any()), // 👈 or Role.user(userId)
+    Permission.write(Role.user(userId)),],
+  { userId, } // ✅ store userId as metadata
       );
     } catch (error) {
       console.error("Error uploading file:", error);
@@ -145,6 +148,20 @@ async getUserBlogs(userId) {
     } catch (error) {
       console.error("Error deleting file:", error);
       throw error;
+    }
+  }
+
+  // function to getfiles by user from storage bcket
+  async getUserFiles(userId) {
+    try {
+      const res = await this.storage.listFiles(config.appwriteBucketId);
+         // Filter files manually by metadata
+    const userFiles = res.files.filter(file => file?.metadata?.userId === userId);
+
+       return userFiles;
+    } catch (error) {
+       console.error("Error fetching user files:", error);
+    return [];
     }
   }
 
