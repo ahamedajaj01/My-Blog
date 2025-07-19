@@ -56,7 +56,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/posts" element={<Posts />} />
         <Route path="/posts/readPost/:id" element={<ReadPost />} />
-        <Route path="reset-password" element={<ResetPasswordPage/>} />
+        <Route path="/reset-password" element={<ResetPasswordPage/>} />
         
         <Route path="/signup" element={<PublicRoute><Signup /></PublicRoute>} />
 
