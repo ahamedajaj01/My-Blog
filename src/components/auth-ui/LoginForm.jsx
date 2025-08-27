@@ -28,7 +28,7 @@ function LoginForm({ onSubmit, loading }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!validate()) return;
+    c
     onSubmit(form);
   };
 

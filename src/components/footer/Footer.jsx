@@ -28,7 +28,7 @@ import React from 'react'
           </a>
 
           <a
-            href="https://github.com/yourprofile"
+            href="https://github.com/ahamedajaj01"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-white"

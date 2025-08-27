@@ -36,7 +36,7 @@ const handleClose = ()=>{
 
       <aside
         className={`
-          bg-gradient-to-r from-purple-400 to-indigo-500 text-white w-60 min-h-screen flex flex-col p-16 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700
+         bg-gradient-to-r from-purple-400 to-indigo-500 text-white w-60 min-h-screen flex flex-col p-16 dark:from-gray-900 dark:via-gray-800 dark:to-gray-700
           fixed top-0 left-0 z-40 transform transition-transform duration-300 ease-in-out
           md:relative md:translate-x-0 md:block
           ${sidebarOpen ? "translate-x-0" : "-translate-x-full"}
@@ -45,7 +45,7 @@ const handleClose = ()=>{
         {/* Close Button (top-right inside sidebar) */}
         <button
           onClick={handleClose}
-          className="absolute top-4 right-4 text-white text-2xl md:hidden"
+          className="absolute top-18 right-1 text-white text-2xl md:hidden"
         >
           ✕
         </button>
