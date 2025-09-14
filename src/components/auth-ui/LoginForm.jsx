@@ -28,7 +28,6 @@ function LoginForm({ onSubmit, loading }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    c
     onSubmit(form);
   };
 
