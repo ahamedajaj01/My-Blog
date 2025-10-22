@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Input, Button, ForgetPasswordModal } from "../index";
 
 function LoginForm({ onSubmit, loading }) {
