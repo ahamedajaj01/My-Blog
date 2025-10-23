@@ -101,12 +101,11 @@ export class AuthService {
 async forgetPassword (email) {
   if(!email) return;
   try {
-   
-
-    const res = await this.account.createRecovery(email, `${config.appwritePasswordRecoveryUrl}?`)
+    const res = await this.account.createRecovery(email, config.appwritePasswordRecoveryUrl)
     return res
   } catch (error) {
     throw(error)
+    
   }
 }
 

@@ -6,7 +6,7 @@ import { resetPassword } from '../appFeatures/authSlice';
 
 
 function ResetPasswordPage() {
-      const [newPassword, setNewPassword] = useState('');
+const [newPassword, setNewPassword] = useState('');
 const dispatch = useDispatch()
 const navigate = useNavigate()
 const {status, error,resetPasswordLoading} = useSelector((state)=>state.auth)
