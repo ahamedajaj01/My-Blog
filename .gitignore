@@ -24,11 +24,10 @@ dist-ssr
 *.sw?
 
 # Enivironment
-.env
-.env.local
 .env.*.local
 coverage
 .cache
 .next
 out
 
+config.bat
